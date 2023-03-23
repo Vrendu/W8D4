@@ -97,4 +97,56 @@ function curriedSum(numArgs){
 // const sum = curriedSum(4);
 // console.log(sum(5)(30)(20)(1)); // => 56
 
-1234
+
+// First method
+Function.prototype.curry = function(numArgs) {
+    const that = this;
+    let numbers = [];
+    return function _curry(num) {
+        numbers.push(num);
+        if (numbers.length === numArgs){
+            return that(numbers);
+        }else {
+            return _curry; 
+        }
+    }
+}
+
+// Apply method
+// Function.prototype.curry = function(numArgs) {
+//     const that = this;
+//     let numbers = [];
+//     return function(num) {
+//         numbers.push(num);
+//         if (numbers.length === numArgs){
+//             return that.apply(null, numbers);
+//         }else {
+//             return this; 
+//         }
+//     }
+// }
+
+// ... method
+// Function.prototype.curry = function(numArgs) {
+//     const that = this;
+//     let numbers = [];
+//     return function(...num) {
+//         numbers.concat(num);
+//         if (numbers.length === numArgs){
+//             return that.call(null, ...numbers);
+//         }else {
+//             return this; 
+//         }
+//     }
+// }
+
+function sum(nums){
+    let sumnum = 0;
+    for (let i = 0; i < nums.length; i++) {
+        sumnum += nums[i];
+    }    
+    return sumnum; 
+}
+
+console.log(sum.curry(3)(30)(20)(1)) // 51
+
