@@ -96,3 +96,5 @@ function curriedSum(numArgs){
 }
 // const sum = curriedSum(4);
 // console.log(sum(5)(30)(20)(1)); // => 56
+
+1234
